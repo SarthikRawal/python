@@ -13,5 +13,6 @@ def prime_factors(n):
         factors.append(n)
     return factors
 
-number = int(input("Enter a number to get its prime factors: "))
-print(prime_factors(number))
+if __name__ == '__main__':
+    number = int(input("Enter a number to get its prime factors: "))
+    print(prime_factors(number))
