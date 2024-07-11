@@ -12,6 +12,6 @@ def perfect_number(num):
     else:
         return f"{num} is not a perfect number"
              
-
-number = int(input("Enter a number: "))
-print(perfect_number(number))
+if __name__ == '__main__':
+    number = int(input("Enter a number: "))
+    print(perfect_number(number))
