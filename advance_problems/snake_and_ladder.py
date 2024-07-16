@@ -23,7 +23,7 @@ def game():
     player2_dice_rolls = 0
     current_player = 1
 
-    while player1_position < WINNING_POSITION and player2_position < WINNING_POSITION:
+    while player1_position < WINNING_POSITION > player2_position:
         if current_player == 1:
             player1_dice_rolls += 1
             dice_number = roll_dice()
