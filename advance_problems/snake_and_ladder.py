@@ -1,7 +1,7 @@
 # Snake & Ladder Simulator
 import random
 
-winning_position = 100
+WINNING_POSITION = 100
 
 def roll_dice():
     return random.randint(1, 6)
@@ -12,36 +12,31 @@ def play_option():
 def game():
     start_position = 0
     player_position = start_position
+    no_of_times_dice_rolled = 0
 
-    while player_position < winning_position:
-        input("Hit 'enter' to roll the dice 🎲") 
+    while player_position < WINNING_POSITION:
+        no_of_times_dice_rolled += 1
         dice_number = roll_dice()
 
         play = play_option()
         if play == 'no-play':
-            print("No Play 😖")
+            pass
         
         if play == 'ladder':
-            print("Ohh you got a ladder 🪜")
-            new_position = player_position + dice_number
-            if new_position <= winning_position:
-                player_position = new_position
-            else:
-                print(f"Rolled {dice_number}, which would exceed position {winning_position}. Stay at position {player_position}.")
-        else:
-            print("Oops, a snake bite 🐍") 
+            if not player_position + dice_number > WINNING_POSITION:
+                player_position = player_position + dice_number
+
+        if play == 'snake':
             player_position -= dice_number
     
-        if player_position < 0:
+            if player_position < start_position:
+                player_position = start_position
             
-            player_position = start_position
-            print("Game-Restart 🔁")
-            
-        if player_position == winning_position:
-            return "Player-won 🎉🎉"
+        if player_position == WINNING_POSITION:
+            print(f"Player Position: {player_position}, Player-won 🎉🎉")
 
-        print(f"Rolled dice: {dice_number}, now your at position {player_position}")
+    print(f"Number of times 🎲 rolled to win: {no_of_times_dice_rolled}")
 
-# Game execution
-result = game()
-print(result)
+if __name__ == '__main__':
+    # Game execution
+    game()
