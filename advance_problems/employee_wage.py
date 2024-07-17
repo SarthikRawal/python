@@ -1,19 +1,26 @@
 # Employee Wages
 import random
 
+WAGE_PER_HOUR = 20
+FULL_DAY_HOURS = 8
+PART_TIME_HOURS = 4
+WORKING_DAYS_PER_MONTH = 20
+
 def check_attendance():
     """
     check for employee attendance status
     """
-    return random.randint(0, 1)
+    return random.randint(0, 2)
 
-def daily_wage(wage_per_hour = 20, full_day_hour = 8):
+def daily_wage(emp_type):
     """
-    calculate daily wage 
+    calculate daily and part time wage 
     """
-    daily_wage = wage_per_hour * full_day_hour
-    return daily_wage
-
-def part_time_wage(wage_per_hour = 20, part_time_hour = 4):
-    part_time_wage = wage_per_hour * part_time_hour
-    return part_time_wage
+    match emp_type:
+        case 0:
+            return "Absent..!"
+        case 1: 
+            return WAGE_PER_HOUR * FULL_DAY_HOURS
+        case 2:
+            return WAGE_PER_HOUR * PART_TIME_HOURS
+         
