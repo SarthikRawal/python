@@ -24,3 +24,12 @@ def daily_wage(emp_type):
         case 2:
             return WAGE_PER_HOUR * PART_TIME_HOURS
          
+def monthly_wage():
+    total_wage = 0
+    attendance = check_attendance()
+    for _ in WORKING_DAYS_PER_MONTH:
+        if attendance == 1:
+            total_wage += daily_wage(1)
+        elif attendance == 2:
+            total_wage += daily_wage(2)
+    return total_wage
