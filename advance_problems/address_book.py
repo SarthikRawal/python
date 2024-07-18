@@ -48,13 +48,20 @@ class AddressBook:
     def add_contact(self, contact_obj: Contact):
         self.contact_dict[contact_obj.first_name] = contact_obj
 
-    def edit_contact(self, first_name, **info):
+    def edit_contact(self, first_name, **details):
         if first_name in self.contact_dict:
             contact = self.contact_dict[first_name]
-            contact.update_contact(**info)
+            contact.update_contact(**details)
             print(f"--> Contact {first_name} has been updated.\n")
         else:
             print(f"--> Contact with first name {first_name} not found.\n")
+
+    def delete_contact(self, first_name, contact_obj: Contact):
+        if first_name in self.contact_dict:
+            self.contact_dict.pop(contact_obj.first_name)
+            print(f"--> {first_name} has been deleted\n")
+        else:
+            print(f"--> Contact with first name {first_name} not found to delete.\n")
 
     def display_contact(self):
         for con in self.contact_dict.values():
@@ -75,4 +82,6 @@ if __name__ == '__main__':
     # address_book.display_contact()
 
     address_book.edit_contact('sarthik', last_name = 'Rawal', address = '68/CHB')
+    address_book.display_contact()
+    address_book.delete_contact('sourabh', contact2)
     address_book.display_contact()
