@@ -74,11 +74,13 @@ if __name__ == '__main__':
 
     address_book = AddressBook()
     
+    # Adding multiple contacts into address book
     contact1 = Contact('sarthik', 'rawal', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
     contact2 = Contact('sourabh', 'bissa', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
-
+    contact3 = Contact('aseen', 'saxena', '99 - CHB', 'Mainpuri', 'UP', '342008', '123456', 'sar@gmail.com')
     address_book.add_contact(contact1)
     address_book.add_contact(contact2)
+    address_book.add_contact(contact3)
     # address_book.display_contact()
 
     address_book.edit_contact('sarthik', last_name = 'Rawal', address = '68/CHB')
