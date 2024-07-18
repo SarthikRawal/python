@@ -42,7 +42,8 @@ class Contact:
             self.email = email
 
 class AddressBook:
-    def __init__(self):
+    def __init__(self, name):
+        self.address_book_name = name
         self.contact_dict = {}
 
     def add_contact(self, contact_obj: Contact):
@@ -68,22 +69,42 @@ class AddressBook:
             con.create_contact()
             print("="*30)
 
+class MultipleAddressBook:
+    def __init__(self):
+        self.address_dict = {}
+
+    def add_address_book(self, address_book_obj: AddressBook):
+        if address_book_obj.address_book_name not in self.address_dict:
+            self.address_dict.update({address_book_obj.address_book_name: address_book_obj})
+        else:
+            print(f"--> {self.address_book_name} already exists")
+    def display_address_books(self):
+        for books in self.address_dict.values():
+            print(f"Address Book: {books.address_book_name}\n")
+            books.display_contact()
+
 
 if __name__ == '__main__':
     print("Welcome to Address Book\n")
 
-    address_book = AddressBook()
+    address_books = MultipleAddressBook()
+    
+    address_book1 = AddressBook("Rajasthan")
+    address_book2 = AddressBook("UP")
+
+    address_books.add_address_book(address_book1)
+    address_books.add_address_book(address_book2)
     
     # Adding multiple contacts into address book
     contact1 = Contact('sarthik', 'rawal', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
     contact2 = Contact('sourabh', 'bissa', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
     contact3 = Contact('aseen', 'saxena', '99 - CHB', 'Mainpuri', 'UP', '342008', '123456', 'sar@gmail.com')
-    address_book.add_contact(contact1)
-    address_book.add_contact(contact2)
-    address_book.add_contact(contact3)
+    address_book1.add_contact(contact1)
+    address_book1.add_contact(contact2)
+    address_book2.add_contact(contact3)
     # address_book.display_contact()
 
-    address_book.edit_contact('sarthik', last_name = 'Rawal', address = '68/CHB')
-    address_book.display_contact()
-    address_book.delete_contact('sourabh', contact2)
-    address_book.display_contact()
+    # address_book1.edit_contact('sarthik', last_name = 'Rawal', address = '68/CHB')
+    # address_book1.display_contact()
+    address_book1.delete_contact('sourabh', contact2)
+    address_books.display_address_books()
