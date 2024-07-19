@@ -42,6 +42,9 @@ class Contact:
             self.email = email
 
 class AddressBook:
+    """
+    A class to have all the info about the contact person in a particular address book
+    """
     def __init__(self, name):
         self.address_book_name = name
         self.contact_dict = {}
@@ -68,12 +71,16 @@ class AddressBook:
             print(f"--> Contact with first name {first_name} not found to delete.\n")
 
     def display_contact(self):
+        # Storing a sroted list of people using there first name
         sorted_details = sorted(self.contact_dict.values(), key=lambda con: con.first_name)
         for con in sorted_details:
             con.create_contact()
             print("="*30)
 
 class MultipleAddressBook:
+    """
+    Class To have multiple Address Book information
+    """
     def __init__(self):
         self.address_dict = {}
 
@@ -84,7 +91,8 @@ class MultipleAddressBook:
             print(f"--> {self.address_book_name} already exists")
 
     def display_address_books(self):
-        for books in self.address_dict.values():
+        sorted_details = sorted(self.address_dict.values(), key=lambda books: books.address_book_name)
+        for books in sorted_details:
             print(f"Address Book: {books.address_book_name}\n")
             books.display_contact()
        
@@ -96,7 +104,7 @@ class MultipleAddressBook:
                 if (city and contact.city == city) or (state and contact.state == state):
                     results.append(contact)
                     count += 1
-        print(f"\nSearch Results for City '{city}':")
+        print(f"\nSearch Results for City '{city} ':")
         print(f"Number of contacts:'{count}':\n")
         for contact in results:
             contact.create_contact()
