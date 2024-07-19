@@ -89,14 +89,18 @@ class MultipleAddressBook:
        
     def search_person(self, city=None, state=None):
         results = []
-        for address_book_name, address_book in self.address_dict.items():
+        count = 0
+        for address_book in self.address_dict.values():
             for contact in address_book.contact_dict.values():
                 if (city and contact.city == city) or (state and contact.state == state):
                     results.append(contact)
+                    count += 1
         print(f"\nSearch Results for City '{city}':")
+        print(f"Number of contacts:'{count}':\n")
         for contact in results:
             contact.create_contact()
             print("="*30)
+    
 
 if __name__ == '__main__':
     print("Welcome to Address Book\n")
@@ -127,7 +131,7 @@ if __name__ == '__main__':
 
     # address_book1.edit_contact('sarthik', last_name = 'Rawal', address = '68/CHB')
     # address_book1.display_contact()
-    address_book1.delete_contact('sourabh', contact2)
+    # address_book1.delete_contact('sourabh', contact2)
     address_books.display_address_books()
 
     # search details using City
