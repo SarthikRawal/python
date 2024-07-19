@@ -97,13 +97,17 @@ class MultipleAddressBook:
             books.display_contact()
        
     def search_person(self, city=None, state=None):
+        def matches_criteria(contact):
+            return (city and contact.city == city) or (state and contact.state == state)
+        
         results = []
         count = 0
         for address_book in self.address_dict.values():
-            for contact in address_book.contact_dict.values():
-                if (city and contact.city == city) or (state and contact.state == state):
-                    results.append(contact)
-                    count += 1
+            serached_contacts = filter(matches_criteria, address_book.contact_dict.values())
+            searched_contacts_list = list(serached_contacts)
+            results.extend(searched_contacts_list)
+            count += len(searched_contacts_list)
+    
         print(f"\nSearch Results for City '{city} ':")
         print(f"Number of contacts:'{count}':\n")
         for contact in results:
@@ -141,8 +145,8 @@ if __name__ == '__main__':
     # address_book1.edit_contact('sarthik', last_name = 'Rawal', address = '68/CHB')
     # address_book1.display_contact()
     # address_book1.delete_contact('sourabh', contact2)
-    address_books.display_address_books()
+    # address_books.display_address_books()
 
     # search details using City
-    # address_books.search_person(city='Jodhpur')
-    # address_books.search_person(city='Mainpuri')
+    address_books.search_person(city='Jodhpur')
+    address_books.search_person(city='Mainpuri')
