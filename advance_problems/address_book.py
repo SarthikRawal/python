@@ -68,7 +68,8 @@ class AddressBook:
             print(f"--> Contact with first name {first_name} not found to delete.\n")
 
     def display_contact(self):
-        for con in self.contact_dict.values():
+        sorted_details = sorted(self.contact_dict.values(), key=lambda con: con.first_name)
+        for con in sorted_details:
             con.create_contact()
             print("="*30)
 
@@ -117,8 +118,8 @@ if __name__ == '__main__':
     
     # Adding multiple contacts into address book
     contact1 = Contact('sarthik', 'rawal', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
-    contact2 = Contact('sourabh', 'bissa', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
-    contact3 = Contact('aseen', 'saxena', '99 - CHB', 'Mainpuri', 'UP', '342008', '123456', 'sar@gmail.com')
+    contact2 = Contact('ronak', 'bissa', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
+    contact3 = Contact('sorav', 'verma', '99 - CHB', 'Mainpuri', 'UP', '342008', '123456', 'sar@gmail.com')
     contact5 = Contact('aseen', 'saxena', '99 - CHB', 'Mainpuri', 'UP', '342008', '123456', 'sar@gmail.com')
     contact4 = Contact('Koushik', 'G', '99 - CHB', 'Chellur', 'Karnataka', '342008', '123456', 'sar@gmail.com')
     
@@ -135,5 +136,5 @@ if __name__ == '__main__':
     address_books.display_address_books()
 
     # search details using City
-    address_books.search_person(city='Jodhpur')
-    address_books.search_person(city='Mainpuri')
+    # address_books.search_person(city='Jodhpur')
+    # address_books.search_person(city='Mainpuri')
