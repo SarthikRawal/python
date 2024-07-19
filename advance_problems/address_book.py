@@ -81,11 +81,22 @@ class MultipleAddressBook:
             self.address_dict.update({address_book_obj.address_book_name: address_book_obj})
         else:
             print(f"--> {self.address_book_name} already exists")
+
     def display_address_books(self):
         for books in self.address_dict.values():
             print(f"Address Book: {books.address_book_name}\n")
             books.display_contact()
-
+       
+    def search_person(self, city=None, state=None):
+        results = []
+        for address_book_name, address_book in self.address_dict.items():
+            for contact in address_book.contact_dict.values():
+                if (city and contact.city == city) or (state and contact.state == state):
+                    results.append(contact)
+        print(f"\nSearch Results for City '{city}':")
+        for contact in results:
+            contact.create_contact()
+            print("="*30)
 
 if __name__ == '__main__':
     print("Welcome to Address Book\n")
@@ -118,3 +129,7 @@ if __name__ == '__main__':
     # address_book1.display_contact()
     address_book1.delete_contact('sourabh', contact2)
     address_books.display_address_books()
+
+    # search details using City
+    address_books.search_person(city='Jodhpur')
+    address_books.search_person(city='Mainpuri')
