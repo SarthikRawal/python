@@ -47,7 +47,10 @@ class AddressBook:
         self.contact_dict = {}
 
     def add_contact(self, contact_obj: Contact):
-        self.contact_dict[contact_obj.first_name] = contact_obj
+        if contact_obj.first_name not in self.contact_dict:
+            self.contact_dict[contact_obj.first_name] = contact_obj
+        else:
+            print(f"--> {contact_obj.first_name} already exists..!")
 
     def edit_contact(self, first_name, **details):
         if first_name in self.contact_dict:
@@ -91,17 +94,24 @@ if __name__ == '__main__':
     
     address_book1 = AddressBook("Rajasthan")
     address_book2 = AddressBook("UP")
+    address_book3 = AddressBook("Karnataka")
 
     address_books.add_address_book(address_book1)
     address_books.add_address_book(address_book2)
+    address_books.add_address_book(address_book3)
     
     # Adding multiple contacts into address book
     contact1 = Contact('sarthik', 'rawal', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
     contact2 = Contact('sourabh', 'bissa', '68 - CHB', 'Jodhpur', 'Rajasthan', '342008', '123456', 'sar@gmail.com')
     contact3 = Contact('aseen', 'saxena', '99 - CHB', 'Mainpuri', 'UP', '342008', '123456', 'sar@gmail.com')
+    contact5 = Contact('aseen', 'saxena', '99 - CHB', 'Mainpuri', 'UP', '342008', '123456', 'sar@gmail.com')
+    contact4 = Contact('Koushik', 'G', '99 - CHB', 'Chellur', 'Karnataka', '342008', '123456', 'sar@gmail.com')
+    
     address_book1.add_contact(contact1)
     address_book1.add_contact(contact2)
     address_book2.add_contact(contact3)
+    address_book2.add_contact(contact5)
+    address_book3.add_contact(contact4)
     # address_book.display_contact()
 
     # address_book1.edit_contact('sarthik', last_name = 'Rawal', address = '68/CHB')
