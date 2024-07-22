@@ -16,6 +16,9 @@ class Line:
     def length(self):
         return math.sqrt((self.point2.x - self.point1.x)**2 + (self.point2.y - self.point1.y)**2)
     
+    def __eq__(self, other):
+        return self.length == other.length
+    
 
 if __name__ == '__main__':
     print('Welcome to Line Comparison Computation')
@@ -24,7 +27,10 @@ if __name__ == '__main__':
     point2 = Point(4, 6)
 
     line1 = Line(point1, point2)
+    line2 = Line(point1, point2)
 
+    print(line1 == line2)
 
     print(f"Length of the line-1: {line1.length:.2f}")
+    print(f"Length of the line-2: {line2.length:.2f}")
     
